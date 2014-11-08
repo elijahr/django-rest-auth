@@ -58,12 +58,12 @@ class PasswordResetSerializer(serializers.Serializer):
 
     password_reset_form_class = PasswordResetForm
 
-    def validate_email(self, attrs, source):
+    def validate_email(self, email, source=None):
         # Create PasswordResetForm with the serializer
-        self.reset_form = self.password_reset_form_class(data=attrs)
+        self.reset_form = self.password_reset_form_class(data={'email':email})
         if not self.reset_form.is_valid():
             raise serializers.ValidationError('Error')
-        return attrs
+        return email
 
     def save(self):
         request = self.context.get('request')
