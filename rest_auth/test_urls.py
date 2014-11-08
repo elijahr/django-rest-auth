@@ -14,9 +14,11 @@ class FacebookLogin(SocialLogin):
 urlpatterns += patterns('',
     url(r'^rest-registration/', include('rest_auth.registration.urls')),
     url(r'^test-admin/', include(urls)),
-    url(r'^account-email-verification-sent/$', TemplateView.as_view(),
+    url(r'^account-email-verification-sent/$', TemplateView.as_view(
+        template_name='rest_auth/account_email_verification_sent.html'),
         name='account_email_verification_sent'),
-    url(r'^account-confirm-email/(?P<key>\w+)/$', TemplateView.as_view(),
+    url(r'^account-confirm-email/(?P<key>\w+)/$', TemplateView.as_view(
+        template_name='rest_auth/account_confirm_email.html'),
         name='account_confirm_email'),
     url(r'^social-login/facebook/$', FacebookLogin.as_view(), name='fb_login')
 )

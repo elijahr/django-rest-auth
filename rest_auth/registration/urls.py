@@ -18,9 +18,11 @@ urlpatterns = patterns('',
     # If you don't want to use API on that step, then just use ConfirmEmailView
     # view from:
     # djang-allauth https://github.com/pennersr/django-allauth/blob/master/allauth/account/views.py#L190
-    url(r'^account-email-verification-sent/$', TemplateView.as_view(),
+    url(r'^account-email-verification-sent/$', TemplateView.as_view(
+        template_name='rest_auth/account_email_verification_sent.html'),
         name='account_email_verification_sent'),
-    url(r'^account-confirm-email/(?P<key>\w+)/$', TemplateView.as_view(),
+    url(r'^account-confirm-email/(?P<key>\w+)/$', TemplateView.as_view(
+        template_name='rest_auth/account_confirm_email.html'),
         name='account_confirm_email'),
 )
 
