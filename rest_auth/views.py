@@ -32,8 +32,10 @@ class Login(GenericAPIView):
     token_model = Token
     response_serializer = TokenSerializer
 
-    def get_serializer(self):
-        return self.serializer_class(data=self.request.DATA,
+    def get_serializer(self, data=None):
+        if data is None:
+            data = self.request.DATA
+        return self.serializer_class(data=data,
             context={'request': self.request, 'view': self})
 
     def login(self):
